@@ -2,8 +2,11 @@ import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import {schema} from './schema.js'
 import { resolver } from './resolver.js';
-
-const server = new ApolloServer({ typeDefs:schema, resolvers:resolver });
+import MovieAPI from './movieApi.js';
+const server = new ApolloServer({ typeDefs:schema, resolvers:resolver , 
+    dataSources: () => ({
+    movieAPI: new MovieAPI(),
+  }), });
 const app = express();
 
 

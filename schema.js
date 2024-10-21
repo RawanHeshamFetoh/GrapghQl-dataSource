@@ -1,19 +1,22 @@
 import { gql } from "apollo-server-express";
+export const schema = gql`
+type Movie {
+    id: ID!
+    title: String!
+    overview: String
+    release_date: String
+    vote_average: Float
+}
 
-export const schema =gql`
-type User {
+type Actor {
     id: ID!
     name: String!
-    email: String!
+    biography: String
+    birthday: String
 }
 
 type Query {
-    users: [User]
-    user(id: ID!): User
-}
-
-type Mutation {
-    addUser(name: String!, email: String!): User
-    deleteUser(id: ID!): String
+    getMovie(id: ID!): Movie
+    getActor(id: ID!): Actor
 }
 `;
